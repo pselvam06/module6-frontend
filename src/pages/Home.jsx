@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
@@ -85,3 +86,23 @@ const Home = () => {
 };
 
 export default Home;
+=======
+import React from "react";
+import { useAuth } from "../context/AuthContext";
+
+const Home = () => {
+  const { user } = useAuth();
+  return (
+    <div className="container mt-5">
+      <h2>Welcome to FlightApp ✈️</h2>
+      {user ? (
+        <p>Hello {user.name}! You are logged in as <b>{user.role}</b>.</p>
+      ) : (
+        <p>Please login or register to continue.</p>
+      )}
+    </div>
+  );
+};
+
+export default Home;
+>>>>>>> 82e1e21 (first commit)

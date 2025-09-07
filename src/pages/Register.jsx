@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
@@ -52,10 +53,33 @@ const Register = () => {
       setError('Failed to create an account');
     } finally {
       setLoading(false);
+=======
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
+
+const Register = () => {
+  const [form, setForm] = useState({ name: "", email: "", password: "", role: "passenger" });
+  const navigate = useNavigate();
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/api/auth/register", form);
+      alert("Registered successfully, login now!");
+      navigate("/login");
+    } catch (err) {
+      alert("Registration failed");
+>>>>>>> 82e1e21 (first commit)
     }
   };
 
   return (
+<<<<<<< HEAD
     <Container className="mt-4">
       <Row className="justify-content-center">
         <Col md={6}>
@@ -135,3 +159,22 @@ const Register = () => {
 };
 
 export default Register;
+=======
+    <div className="container mt-5">
+      <h2>Register</h2>
+      <form onSubmit={handleSubmit}>
+        <input className="form-control my-2" type="text" name="name" placeholder="Name" onChange={handleChange} />
+        <input className="form-control my-2" type="email" name="email" placeholder="Email" onChange={handleChange} />
+        <input className="form-control my-2" type="password" name="password" placeholder="Password" onChange={handleChange} />
+        <select className="form-control my-2" name="role" onChange={handleChange}>
+          <option value="passenger">Passenger</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button className="btn btn-success w-100">Register</button>
+      </form>
+    </div>
+  );
+};
+
+export default Register;
+>>>>>>> 82e1e21 (first commit)

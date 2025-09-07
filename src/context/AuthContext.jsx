@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
@@ -73,10 +74,29 @@ export const AuthProvider = ({ children }) => {
         success: false, 
         message: error.response?.data?.message || 'Registration failed' 
       };
+=======
+import React, { createContext, useState, useContext } from "react";
+import API from "../api/axiosClient";
+
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+
+  const login = async (email, password) => {
+    try {
+      const res = await API.post("/auth/login", { email, password }); // uses axiosClient
+      setUser(res.data.user);
+      return res.data.user;
+    } catch (err) {
+      console.error("API Error:", err);
+      throw err;
+>>>>>>> 82e1e21 (first commit)
     }
   };
 
   const logout = () => {
+<<<<<<< HEAD
     localStorage.removeItem('token');
     delete axios.defaults.headers.common['Authorization'];
     setCurrentUser(null);
@@ -96,3 +116,16 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+=======
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, setUser, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);
+>>>>>>> 82e1e21 (first commit)

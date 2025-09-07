@@ -7,14 +7,19 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+<<<<<<< HEAD
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
+=======
+    "preview": "vite preview"
+>>>>>>> 82e1e21 (first commit)
   },
   "dependencies": {
     "axios": "^1.11.0",
     "bootstrap": "^5.3.8",
     "react": "^19.1.1",
+<<<<<<< HEAD
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.1",
     "react-icons": "^5.5.0",
@@ -22,6 +27,11 @@
     "react-router-dom": "^7.8.2",
     "route": "^0.2.5",
     "routes": "^2.1.0"
+=======
+    "react-dom": "^19.1.1",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.8.2"
+>>>>>>> 82e1e21 (first commit)
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

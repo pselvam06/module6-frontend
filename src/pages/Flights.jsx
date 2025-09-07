@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+<<<<<<< HEAD
 import { Container, Row, Col, Card, Button, Form, Spinner, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -16,11 +17,20 @@ const Flights = () => {
   });
   
   const { API_BASE_URL } = useAuth();
+=======
+import API from '../api/axiosClient';
+import { Link } from 'react-router-dom';
+
+const Flights = () => {
+  const [flights, setFlights] = useState([]);
+  const [filters, setFilters] = useState({ from:'', to:'', journeyDate:'' });
+>>>>>>> 82e1e21 (first commit)
 
   useEffect(() => {
     fetchFlights();
   }, []);
 
+<<<<<<< HEAD
   useEffect(() => {
     filterFlights();
   }, [flights, filters]);
@@ -166,3 +176,37 @@ const Flights = () => {
 };
 
 export default Flights;
+=======
+  const fetchFlights = async () => {
+    const params = {};
+    if (filters.from) params.from = filters.from;
+    if (filters.to) params.to = filters.to;
+    if (filters.journeyDate) params.journeyDate = filters.journeyDate;
+    const res = await API.get('/flights', { params });
+    setFlights(res.data);
+  };
+
+  return (
+    <div>
+      <h2>Available Flights</h2>
+      <div>
+        <input placeholder="From" value={filters.from} onChange={e => setFilters(s => ({...s, from: e.target.value}))} />
+        <input placeholder="To" value={filters.to} onChange={e => setFilters(s => ({...s, to: e.target.value}))} />
+        <input type="date" value={filters.journeyDate} onChange={e => setFilters(s => ({...s, journeyDate: e.target.value}))} />
+        <button onClick={fetchFlights}>Search</button>
+      </div>
+      <ul>
+        {flights.map(f => (
+          <li key={f._id}>
+            <div>{f.flightNumber} - {f.flightName}</div>
+            <div>{f.from} → {f.to} at {new Date(f.journeyDateTime).toLocaleString()}</div>
+            <Link to={`/book/${f._id}`}>Book</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Flights;
+>>>>>>> 82e1e21 (first commit)
